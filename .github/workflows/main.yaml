@@ -16,3 +16,4 @@ jobs:
         sharepoint-drive-name: Documents
         sharepoint-file-path: test/test.txt
         sharepoint-site-name: DaveTest
+        tenant-id: 5a5b9e61-20b2-4578-8f37-246881fa0d61
