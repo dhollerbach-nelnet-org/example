@@ -8,7 +8,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Run action
-      uses: dhollerbach-nelnet-org/github-actions/upload-file-to-sharepoint@main
+      uses: dhollerbach-nelnet-org/github-actions-upload-file-to-sharepoint@main
       with:
         client-id: f14afd0f-c319-49db-a7b4-814f2568187d
         client-secret: EnC8Q~LrddPeq7YvPnS478pa0GQGJ42kyQyuUcrg
