@@ -13,7 +13,7 @@ jobs:
         client-id: f14afd0f-c319-49db-a7b4-814f2568187d
         client-secret: EnC8Q~LrddPeq7YvPnS478pa0GQGJ42kyQyuUcrg
         local-file-path: ./test.txt
-        sharepoint-drive-name: Documents
+        sharepoint-drive-name: Tech Team
         sharepoint-file-path: test/test.txt
         sharepoint-site-id: ceacc742-fb4a-4357-8b0e-ad388de0c2eb
         tenant-id: 5a5b9e61-20b2-4578-8f37-246881fa0d61
