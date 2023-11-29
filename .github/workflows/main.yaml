@@ -7,4 +7,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - run: echo ${{ secrets.example_secret_name }} | base64 -d
+    - run: echo ${{ secrets.example_secret_name }}
