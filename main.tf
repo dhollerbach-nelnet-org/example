@@ -6,7 +6,9 @@
 
 
 # GITHUB
-provider "github" {}
+provider "github" {
+  token = var.token
+}
 
 data "github_repository" "this" {
   full_name = "dhollerbach-nelnet-org/example"
