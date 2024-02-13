@@ -23,7 +23,7 @@ resource "github_repository_environment" "this" {
 
 resource "github_actions_environment_secret" "test_secret" {
   repository       = data.github_repository.this.name
-  environment      = github_repository_environment.this.environment
+  environment      = "test"
   secret_name      = "test_secret_name"
   plaintext_value  = "%s"
 }
