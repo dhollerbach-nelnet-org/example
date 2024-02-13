@@ -1,8 +1,8 @@
-provider "aws" {}
+# provider "aws" {}
 
-resource "aws_s3_bucket" "this" {
-  bucket = "oau2i2ndadv923n--213rvnqv-128"
-}
+# resource "aws_s3_bucket" "this" {
+#   bucket = "oau2i2ndadv923n--213rvnqv-128"
+# }
 
 
 # GITHUB

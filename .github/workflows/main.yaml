@@ -13,12 +13,12 @@ env:
   TERRAFORM_VERSION: 1.7.3
 
 jobs:
-  terraform-plan:
-    name: Terraform Plan
+  terraform:
+    name: Terraform
     runs-on: ubuntu-latest
     environment: ${{ matrix.environments }}
     concurrency:
-      group: Terraform Plan (${{ matrix.environments }})
+      group: Terraform (${{ matrix.environments }})
     strategy:
       matrix:
         environments: [test]
@@ -45,5 +45,5 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      - name: Terraform Plan
-        run: terraform plan -no-color
+      - name: Terraform Apply
+        run: terraform apply -no-color --auto-approve
