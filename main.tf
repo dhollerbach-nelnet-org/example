@@ -1,19 +1,8 @@
-# provider "aws" {}
-
-# resource "aws_s3_bucket" "this" {
-#   bucket = "oau2i2ndadv923n--213rvnqv-128"
-# }
-
-
-# GITHUB
-provider "github" {
-  owner = "dhollerbach-nelnet-org"
-  token = var.token
+resource "aws_s3_bucket" "this" {
+  bucket = github_actions_environment_secret.this.encrypted_value
 }
 
-variable "token" {}
-
-resource "github_actions_environment_secret" "test_secret" {
+resource "github_actions_environment_secret" "this" {
   repository      = "example"
   environment     = "test"
   secret_name     = "TEST"
