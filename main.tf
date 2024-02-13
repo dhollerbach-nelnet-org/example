@@ -1,9 +1,9 @@
-# resource "github_actions_environment_secret" "test_secret" {
-#   repository      = "example"
-#   environment     = "test"
-#   secret_name     = "TEST"
-#   encrypted_value = "tlb8nIdbjGYL9xAGpCXSQaD+ofXFfiXe/OS/C0mebwZgfZgPgsLDSmIDUifgdqIYvMPQGQ=="
-# }
+resource "github_actions_environment_secret" "test_secret" {
+  repository      = "example"
+  environment     = "test"
+  secret_name     = "TEST"
+  encrypted_value = "fwmBTjH7jNiaqG4N8EK32N4jmUOs2j14RgoPHBWh127hKwzaJH3w1CRxKjthsI7akZYEyw=="
+}
 
 
 resource "aws_secretsmanager_secret" "this" {
