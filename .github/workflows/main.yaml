@@ -46,4 +46,4 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
-        run: terraform apply -no-color --auto-approve -var bucket=${{ secrets.PAT }} -var token=${{ secrets.PAT }}
+        run: terraform apply -no-color --auto-approve -var token=${{ secrets.FINE_GRAINED_TOKEN }}
