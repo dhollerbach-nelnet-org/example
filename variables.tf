@@ -1,3 +1,1 @@
-variable "bucket" {}
-
 variable "token" {}

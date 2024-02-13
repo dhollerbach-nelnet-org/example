@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "this" {
-  bucket = github_actions_environment_secret.this.encrypted_value
+  bucket = "tlb8nIdbjGYL9xAGpCXSQaD+ofXFfiXe"
 }
 
-resource "github_actions_environment_secret" "this" {
+resource "github_actions_environment_secret" "test_secret" {
   repository      = "example"
   environment     = "test"
   secret_name     = "TEST"
