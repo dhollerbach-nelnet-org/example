@@ -7,18 +7,15 @@
 
 # GITHUB
 provider "github" {
+  owner = "dhollerbach-nelnet-org"
   token = var.token
 }
 
 variable "token" {}
 
-data "github_repository" "this" {
-  full_name = "dhollerbach-nelnet-org/example"
-}
-
 resource "github_actions_environment_secret" "test_secret" {
-  repository       = data.github_repository.this.name
-  environment      = "test"
-  secret_name      = "test_secret_name"
-  plaintext_value  = "%s"
+  repository      = "example"
+  environment     = "test"
+  secret_name     = "TEST"
+  plaintext_value = "test"
 }
