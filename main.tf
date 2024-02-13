@@ -10,6 +10,8 @@ provider "github" {
   token = var.token
 }
 
+variable "token" {}
+
 data "github_repository" "this" {
   full_name = "dhollerbach-nelnet-org/example"
 }
