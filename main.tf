@@ -16,11 +16,6 @@ data "github_repository" "this" {
   full_name = "dhollerbach-nelnet-org/example"
 }
 
-resource "github_repository_environment" "this" {
-  repository       = data.github_repository.this.name
-  environment      = "example"
-}
-
 resource "github_actions_environment_secret" "test_secret" {
   repository       = data.github_repository.this.name
   environment      = "test"
