@@ -1,49 +1,41 @@
 name: on-main
 
 on:
-  deployment:
   push:
     branches: [main]
 
 permissions:
-  contents: read
   id-token: write
-
-env:
-  TERRAFORM_VERSION: 1.7.3
+  contents: read
 
 jobs:
-  terraform:
-    name: Terraform
+  create-github-runner:
+    name: Create GitHub Runner
     runs-on: ubuntu-latest
-    environment: ${{ matrix.environments }}
-    concurrency:
-      group: Terraform (${{ matrix.environments }})
-    strategy:
-      matrix:
-        environments: [test]
+    environment: test
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: oNaiPs/secrets-to-env-action@v1
-        with:
-          secrets: ${{ toJSON(secrets) }}
-          prefix: TF_VAR_
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+      - uses: actions/checkout@v4
 
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_version: 1.7.5
           terraform_wrapper: false
 
-      - name: Terraform Init
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Run Terraform init
         run: terraform init
 
-      - name: Terraform Apply
-        run: terraform apply -no-color --auto-approve -var secret_name=${{ secrets.TEST }} -var secret_string=${{ secrets.TEST }} -var token=${{ secrets.FINE_GRAINED_TOKEN }}
+      - name: Run Terraform test
+        run: terraform apply --auto-approve -var github_access_token=${{ secrets.PAT }} -var github_commit_sha=${{ github.sha }} -var vpc_id=${{ secrets.VPC_ID }}
+
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    steps:
+      - run: echo Works!
