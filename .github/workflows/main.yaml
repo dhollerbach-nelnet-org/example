@@ -16,6 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v3
         with:
@@ -31,8 +35,8 @@ jobs:
       - name: Run Terraform init
         run: terraform init
 
-      - name: Run Terraform test
-        run: terraform apply --auto-approve -var github_access_token=${{ secrets.PAT }} -var github_commit_sha=${{ github.sha }} -var vpc_id=${{ secrets.VPC_ID }}
+      - name: Run Terraform Apply
+        run: terraform apply --auto-approve -var github_access_token=${{ secrets.PAT }} -var github_commit_sha=${{ steps.vars.outputs.sha_short }} -var vpc_id=${{ secrets.VPC_ID }}
 
   deploy:
     name: Deploy
