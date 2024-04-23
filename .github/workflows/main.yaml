@@ -37,5 +37,6 @@ jobs:
   deploy:
     name: Deploy
     runs-on: self-hosted
+    needs: create-github-runner
     steps:
       - run: echo Works!
