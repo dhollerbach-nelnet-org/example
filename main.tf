@@ -75,7 +75,7 @@ module "ecs" {
           cpu       = 256
           memory    = 512
           essential = true
-          image     = "dhollerbach/github-runner:v1"
+          image     = "dhollerbach/github-runner:latest"
           environment = [
             {
               name  = "RUNNER_ALLOW_RUNASROOT"
