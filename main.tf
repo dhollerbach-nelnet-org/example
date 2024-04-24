@@ -94,6 +94,8 @@ module "ecs" {
         }
       }
 
+      force_delete = false
+
       runtime_platform = {
         cpu_architecture        = "ARM64"
         operating_system_family = "LINUX"
