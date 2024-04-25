@@ -39,7 +39,7 @@ start_github_runner() {
   trap remove_github_runner EXIT SIGINT SIGTERM
 
   ./config.sh --url "${GITHUB_ACTIONS_RUNNER_CONTEXT}" --token "${RUNNER_TOKEN}" --name "${RUNNER_NAME}" --work "${RUNNER_WORKDIR}"
-  ./run.sh & wait
+  exec ./run.sh & wait
 }
 
 start_github_runner
