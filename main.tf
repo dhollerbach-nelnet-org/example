@@ -19,36 +19,6 @@ data "aws_subnets" "private" {
 }
 
 #------------------------------------------------------------------------------
-# VARIABLES
-#------------------------------------------------------------------------------
-variable "github_access_token" {
-  description = "(Required) The GitHub access token. Can be a personal access token or a fine-grained access token."
-  type        = string
-}
-
-variable "github_commit_sha" {
-  description = "(Required) The GitHub commit sha. Can be a UUID if desired."
-  type        = string
-}
-
-variable "github_organization" {
-  default     = "dhollerbach-nelnet-org"
-  description = "(Required) The GitHub organization."
-  type        = string
-}
-
-variable "github_repository" {
-  default     = "example"
-  description = "(Required) The GitHub repository."
-  type        = string
-}
-
-variable "vpc_id" {
-  description = "(Required) The VPC ID to create the ECS Fargate services in."
-  type        = string
-}
-
-#------------------------------------------------------------------------------
 # ECS
 #------------------------------------------------------------------------------
 module "ecs" {
@@ -126,4 +96,45 @@ module "ecs" {
   }
 
   tags = local.tags
+}
+
+#------------------------------------------------------------------------------
+# VARIABLES
+#------------------------------------------------------------------------------
+variable "github_access_token" {
+  description = "(Required) The GitHub access token. Can be a personal access token or a fine-grained access token."
+  type        = string
+}
+
+variable "github_commit_sha" {
+  description = "(Required) The GitHub commit sha. Can be a UUID if desired."
+  type        = string
+}
+
+variable "github_organization" {
+  default     = "dhollerbach-nelnet-org"
+  description = "(Required) The GitHub organization."
+  type        = string
+}
+
+variable "github_repository" {
+  default     = "example"
+  description = "(Required) The GitHub repository."
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "(Required) The VPC ID to create the ECS Fargate services in."
+  type        = string
+}
+
+#------------------------------------------------------------------------------
+# OUTPUTS
+#------------------------------------------------------------------------------
+output "ecs_cluster_name" {
+  value = module.ecs.cluster_name
+}
+
+output "ecs_service_name" {
+  value = module.ecs.services[local.name].name
 }

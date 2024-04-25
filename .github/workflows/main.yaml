@@ -74,6 +74,9 @@ jobs:
           role-to-assume: ${{ secrets.AWS_IAM_ROLE_ARN }}
           aws-region: us-east-1
 
+      - name: Set ECS Task Count To 0 # The container removes the GitHub Runner when stopped. Terraform Destroy does not stop the container, it just deletes it
+        run: aws ecs update-service --cluster github-runner-${{ steps.vars.outputs.sha_short }} --service github-runner-${{ steps.vars.outputs.sha_short }} --desired-count 0
+
       - name: Run Terraform init
         run: terraform init
 
