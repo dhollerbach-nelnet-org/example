@@ -44,7 +44,7 @@ jobs:
         run: terraform init
 
       - name: Run Terraform Apply
-        run: terraform apply --auto-approve -var github_access_token=${{ secrets.MANAGE_GITHUB_RUNNERS_TOKEN }} -var github_commit_sha=${{ steps.vars.outputs.SHA_SHORT }} -var vpc_id=${{ secrets.VPC_ID }}
+        run: terraform apply --auto-approve -var github_access_token=${{ secrets.PAT }} -var github_commit_sha=${{ steps.vars.outputs.SHA_SHORT }} -var vpc_id=${{ secrets.VPC_ID }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -90,7 +90,7 @@ jobs:
           name: terraform-dev.tfstate
 
       - name: Run Terraform Destroy
-        run: terraform destroy --auto-approve -var github_access_token=${{ secrets.MANAGE_GITHUB_RUNNERS_TOKEN }} -var github_commit_sha=${{ needs.create-github-runner-dev.outputs.SHA_SHORT }} -var vpc_id=${{ secrets.VPC_ID }}
+        run: terraform destroy --auto-approve -var github_access_token=${{ secrets.PAT }} -var github_commit_sha=${{ needs.create-github-runner-dev.outputs.SHA_SHORT }} -var vpc_id=${{ secrets.VPC_ID }}
 
   #------------------------------------------------------------------------------
   # TEST
