@@ -64,7 +64,7 @@ jobs:
   remove-github-runner-dev:
     name: Remove GitHub Runner (dev)
     runs-on: ubuntu-latest
-    needs: deploy-dev
+    needs: [create-github-runner-dev, deploy-dev]
     environment: test
     steps:
       - uses: actions/checkout@v4
