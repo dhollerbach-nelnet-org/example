@@ -78,13 +78,16 @@ jobs:
       - name: Set ECS Task Count To 0 # The container removes the GitHub Runner when stopped. Terraform Destroy does not stop the container, it just deletes it
         run: aws ecs update-service --cluster github-runner-${{ needs.create-github-runner-dev.outputs.SHA_SHORT }} --service github-runner-${{ needs.create-github-runner-dev.outputs.SHA_SHORT }} --desired-count 0
 
+      - name: Wait For ECS to Scale Down
+        run: sleep 15
+
       - name: Terraform Setup
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.5
           terraform_wrapper: false
 
-      - name: Run Terraform init
+      - name: Run Terraform Init
         run: terraform init
 
       - uses: actions/download-artifact@v4
