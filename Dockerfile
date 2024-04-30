@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y \
   curl \
   jq \
-  docker \
+  docker.io \
   && rm -rf /var/lib/apt/lists/*
 
 RUN addgroup runner && \
